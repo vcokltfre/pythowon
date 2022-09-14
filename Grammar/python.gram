@@ -131,7 +131,7 @@ compound_stmt[stmt_ty]:
     | &('class' | '@') class_def
     | &('with' | ASYNC) with_stmt
     | &('for' | ASYNC) for_stmt
-    | &'try' try_stmt
+    | &('try' | 'uwu') try_stmt
     | &'while' while_stmt
     | match_stmt
 
@@ -410,9 +410,9 @@ with_item[withitem_ty]:
 
 try_stmt[stmt_ty]:
     | invalid_try_stmt
-    | 'try' &&':' b=block f=finally_block { _PyAST_Try(b, NULL, NULL, f, EXTRA) }
-    | 'try' &&':' b=block ex[asdl_excepthandler_seq*]=except_block+ el=[else_block] f=[finally_block] { _PyAST_Try(b, ex, el, f, EXTRA) }
-    | 'try' &&':' b=block ex[asdl_excepthandler_seq*]=except_star_block+ el=[else_block] f=[finally_block] { 
+    | ('try' | 'uwu') &&':' b=block f=finally_block { _PyAST_Try(b, NULL, NULL, f, EXTRA) }
+    | ('try' | 'uwu') &&':' b=block ex[asdl_excepthandler_seq*]=except_block+ el=[else_block] f=[finally_block] { _PyAST_Try(b, ex, el, f, EXTRA) }
+    | ('try' | 'uwu') &&':' b=block ex[asdl_excepthandler_seq*]=except_star_block+ el=[else_block] f=[finally_block] { 
         CHECK_VERSION(stmt_ty, 11, "Exception groups are", 
                       _PyAST_TryStar(b, ex, el, f, EXTRA)) }
 
@@ -422,13 +422,13 @@ try_stmt[stmt_ty]:
 
 except_block[excepthandler_ty]:
     | invalid_except_stmt_indent
-    | 'except' e=expression t=['as' z=NAME { z }] ':' b=block {
+    | ('except' | 'owo') e=expression t=['as' z=NAME { z }] ':' b=block {
         _PyAST_ExceptHandler(e, (t) ? ((expr_ty) t)->v.Name.id : NULL, b, EXTRA) }
-    | 'except' ':' b=block { _PyAST_ExceptHandler(NULL, NULL, b, EXTRA) }
+    | ('except' | 'owo') ':' b=block { _PyAST_ExceptHandler(NULL, NULL, b, EXTRA) }
     | invalid_except_stmt
 except_star_block[excepthandler_ty]:
     | invalid_except_star_stmt_indent
-    | 'except' '*' e=expression t=['as' z=NAME { z }] ':' b=block {
+    | ('except' | 'owo') '*' e=expression t=['as' z=NAME { z }] ':' b=block {
         _PyAST_ExceptHandler(e, (t) ? ((expr_ty) t)->v.Name.id : NULL, b, EXTRA) }
     | invalid_except_stmt
 finally_block[asdl_stmt_seq*]:

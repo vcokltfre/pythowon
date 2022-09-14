@@ -44,10 +44,12 @@ kwlist = [
     'nonlocal',
     'not',
     'or',
+    'owo',
     'pass',
     'raise',
     'return',
     'try',
+    'uwu',
     'while',
     'with',
     'yield'
