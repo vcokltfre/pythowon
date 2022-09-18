@@ -3048,7 +3048,9 @@ _PyBuiltin_Init(PyInterpreterState *interp)
     SETBUILTIN("Ellipsis",              Py_Ellipsis);
     SETBUILTIN("NotImplemented",        Py_NotImplemented);
     SETBUILTIN("False",                 Py_False);
+    SETBUILTIN("Fawse",                 Py_False);
     SETBUILTIN("True",                  Py_True);
+    SETBUILTIN("Twue",                  Py_True);
     SETBUILTIN("bool",                  &PyBool_Type);
     SETBUILTIN("memoryview",        &PyMemoryView_Type);
     SETBUILTIN("bytearray",             &PyByteArray_Type);
