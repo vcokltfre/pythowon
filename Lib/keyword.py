@@ -46,6 +46,7 @@ kwlist = [
     'or',
     'owo',
     'pass',
+    'plsget',
     'raise',
     'return',
     'try',
